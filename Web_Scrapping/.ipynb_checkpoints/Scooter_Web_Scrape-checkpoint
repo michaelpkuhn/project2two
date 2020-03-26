@@ -1,0 +1,156 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Dependencies\n",
+    "from bs4 import BeautifulSoup\n",
+    "import requests\n",
+    "import pandas as pd\n",
+    "from splinter import Browser"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "UnboundLocalError",
+     "evalue": "local variable 'e' referenced before assignment",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mUnboundLocalError\u001b[0m                         Traceback (most recent call last)",
+      "\u001b[1;32m<ipython-input-5-35801f60c2f8>\u001b[0m in \u001b[0;36m<module>\u001b[1;34m\u001b[0m\n\u001b[0;32m      1\u001b[0m \u001b[0mexecutable_path\u001b[0m \u001b[1;33m=\u001b[0m \u001b[1;33m{\u001b[0m\u001b[1;34m'C:/Users/admin/HW/project2/Web_Scrapping'\u001b[0m\u001b[1;33m:\u001b[0m \u001b[1;34m'chromedriver.exe'\u001b[0m\u001b[1;33m}\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m----> 2\u001b[1;33m \u001b[0mbrowser\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mBrowser\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;34m'chrome'\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;34m'C:/Users/admin/Anaconda3/Lib/site-packages/splinter'\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mheadless\u001b[0m\u001b[1;33m=\u001b[0m\u001b[1;32mFalse\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[1;32m~\\Anaconda3\\lib\\site-packages\\splinter\\browser.py\u001b[0m in \u001b[0;36mBrowser\u001b[1;34m(driver_name, retry_count, *args, **kwargs)\u001b[0m\n\u001b[0;32m     88\u001b[0m         \u001b[1;32mraise\u001b[0m \u001b[0mDriverNotFoundError\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;34m\"No driver for %s\"\u001b[0m \u001b[1;33m%\u001b[0m \u001b[0mdriver_name\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     89\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m---> 90\u001b[1;33m     \u001b[1;32mreturn\u001b[0m \u001b[0mget_driver\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mdriver\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;33m*\u001b[0m\u001b[0margs\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;33m**\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[1;32m~\\Anaconda3\\lib\\site-packages\\splinter\\browser.py\u001b[0m in \u001b[0;36mget_driver\u001b[1;34m(driver, retry_count, *args, **kwargs)\u001b[0m\n\u001b[0;32m     66\u001b[0m             \u001b[1;32mpass\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     67\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m---> 68\u001b[1;33m     \u001b[1;32mraise\u001b[0m \u001b[0me\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m     69\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     70\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n",
+      "\u001b[1;31mUnboundLocalError\u001b[0m: local variable 'e' referenced before assignment"
+     ]
+    }
+   ],
+   "source": [
+    "executable_path = {'C:/Users/admin/HW/project2/Web_Scrapping': 'chromedriver.exe'}\n",
+    "browser = Browser('chrome', 'C:/Users/admin/Anaconda3/Lib/site-packages/splinter', headless=False)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Master dictitonary for all variables\n",
+    "scooter_dict = {}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Scooter Images"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "image_url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'\n",
+    "browser.visit(image_url)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "browser.visit(hem1_url)\n",
+    "\n",
+    "# HTML object\n",
+    "html = browser.html\n",
+    "\n",
+    "# Parse HTML with Beautiful Soup\n",
+    "soup = BeautifulSoup(html, 'html.parser')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Retrieve all elements that contain featured image\n",
+    "\n",
+    "feature = soup.find('img', class_='E-Scooter web grapic')\n",
+    "# print(feature)\n",
+    "\n",
+    "# # Add featured_image_url to master dictionary\n",
+    "# mars['featured_image_url']= featured_image_url\n",
+    "# mars\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "content = soup.find('div', class_='container-fluid page-full-description-above')\n",
+    "# print(content)\n",
+    "\n",
+    "link = content.find('a')\n",
+    "img_href = link['href']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Retrieve the latest Mars weather tweet\n",
+    "\n",
+    "chi_logo = soup.find('div', class_='css-901oao r-hkyrab r-1qd0xha r-a023e6 r-16dba41 r-ad9z0x r-bcqeeo r-bnwqim r-qvutc0').text\n",
+    "print(mars_weather)\n",
+    "\n",
+    "# Add variable to master dictionary\n",
+    "mars[\"mars_weather\"]=mars_weather\n",
+    "mars"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

@@ -1,0 +1,27 @@
+body{
+  background-color: lightblue;
+}
+
+.do-dont-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+  width: 65%;
+}
+
+footer{
+  background-image: gray;
+  text-align: center;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 60px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.copyright{
+  padding: 14pt;
+}

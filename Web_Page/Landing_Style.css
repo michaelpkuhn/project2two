@@ -1,0 +1,34 @@
+body{
+  background-color: lightblue;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eval-title {
+  color: red;
+  font-family: fantasy;
+  letter-spacing: 3px;
+  /* font-weight: bold; */
+  text-align: center;
+
+}
+
+footer{
+    background-image: gray;
+    text-align: center;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 60px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.copyright{
+  padding: 14pt;
+}
