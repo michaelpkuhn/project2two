@@ -2,6 +2,7 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
+from sqlalchemy import create_engine, inspect
 
 from flask import Flask, jsonify
 
@@ -16,9 +17,17 @@ engine = create_engine("sqlite:///../data/chiTransport2.sqlite")
 #################################################
 app = Flask(__name__)
 
-
 @app.route("/")
 def welcome():
+    return (
+        f"Available Routes:<br/>"
+        f"/api/scoot<br/>"
+        f"/api/divvy"
+    )
+    
+
+@app.route("/api/scoot")
+def scoot():
     #Scoot JSON
     scootResults = engine.execute("Select * from randomScoot WHERE [Start Census Tract] != '' AND [End Community Area Number] != '' AND [Trip Distance] != '0' LIMIT 10000").fetchall()
     scootJson = []
@@ -42,3 +51,26 @@ def welcome():
         scootJson.append(r)
     
     return jsonify(scootJson)
+
+@app.route("/api/divvy")
+def divvy():
+    #Scoot JSON
+    divvy_results = engine.execute("Select * from randomDivvy LIMIT 10000").fetchall()
+    inspector = inspect(engine)
+    divvyColumns = inspector.get_columns('randomDivvy')
+    colNames = [d['name'] for d in divvyColumns]
+    q2scope = ['2019-04','2019-05']
+    divvyJson = []
+    for result in divvy_results:
+        if result[1][:7] not in q2scope:
+            r = {}
+            for i, c in enumerate(colNames):
+                if i != 3 and i != 6 and i < 8:
+                    r[c] = result[i]
+            divvyJson.append(r)
+    
+    return jsonify(divvyJson)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
