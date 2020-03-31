@@ -19,10 +19,14 @@ app = Flask(__name__)
 
 @app.route("/")
 def welcome():
+    scoot = '/api/scoot'
+    divvy = '/api/divvy'
+    getMap = '/map'
     return (
         f"Available Routes:<br/>"
-        f"/api/scoot<br/>"
-        f"/api/divvy"
+        f"<a href={scoot}>{scoot}</a><br/>"
+        f"<a href={divvy}>{divvy}</a><br/>"
+        f"<a href={getMap}>{getMap}</a>"
     )
     
 
