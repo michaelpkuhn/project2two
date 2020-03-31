@@ -10,19 +10,23 @@ var myMap = L.map("map", {
     accessToken: API_KEY
   }).addTo(myMap);
   
-  var url = ("../short.json");
+  var url = ("../scoot.json");
   
   d3.json(url, function(response) {
   
     console.log(response);
   
     var heatArray = [];
+
+
   
     for (var i = 0; i < response.length; i++) {
-      var location = response[i].location;
+        var endLat = response[i]["End Lat"];
+        var endLong = response[i]["End Long"];
+        var location = [endLat, endLong]; 
   
       if (location) {
-        heatArray.push([location.coordinates[1], location.coordinates[0]]);
+        heatArray.push([location[0], location[1]]);
       }
     }
   
