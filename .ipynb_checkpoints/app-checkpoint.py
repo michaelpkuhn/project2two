@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 from sqlalchemy import create_engine, inspect
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template, redirect
 
 
 #################################################
@@ -66,10 +66,15 @@ def divvy():
             r = {}
             for i, c in enumerate(colNames):
                 if i != 3 and i != 6 and i < 8:
-                    r[c] = result[i]
+                     r[c] = result[i]
             divvyJson.append(r)
     
     return jsonify(divvyJson)
+
+@app.route("/map")
+def getMap():
+    return render_template('/maps.html')#, data=mars_data, hemi=mars_data['hemi'], news = mars_data['news'])
+
 
 
 if __name__ == '__main__':
