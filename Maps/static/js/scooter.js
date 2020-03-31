@@ -11,19 +11,50 @@ var myMap = L.map("map", {
     accessToken: API_KEY
   }).addTo(myMap);
   
-  var newtry = require("../short.json");
+  var newtry = ("../scooter.json");
 
   console.log(newtry);
+
   
   d3.json(newtry, function(response) {
   
     console.log(response);
   
     for (var i = 0; i < response.length; i++) {
-      var location = response[i].location;
+      var startLat = response[i]["Start Lat"];
+
+    
+
+      var startLong = response[i]["Start Long"];
+
+      var location = [startLat, startLong];  
+
+      console.log(location);
   
       if (location) {
-        L.marker([location.coordinates[1], location.coordinates[0]]).addTo(myMap);
+        L.marker([location[0], location[1]]).addTo(myMap);
+      }
+    }
+  
+  });
+
+  d3.json(newtry, function(response) {
+  
+    console.log(response);
+  
+    for (var i = 0; i < response.length; i++) {
+      var endLat = response[i]["End Lat"];
+
+    
+
+      var endLong = response[i]["End Long"];
+
+      var location = [endLat, endLong];  
+
+      console.log(location);
+  
+      if (location) {
+        L.circle([location[0], location[1]]).addTo(myMap);
       }
     }
   
