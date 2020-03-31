@@ -10,8 +10,8 @@ from flask import Flask, jsonify, render_template, redirect
 #################################################
 # Database Setup
 #################################################
-engine = create_engine("sqlite:///../data/chiTransport2.sqlite")
-
+#engine = create_engine("sqlite:///../data/chiTransport2.sqlite")
+engine = create_engine("sqlite:///data/chiTransport2.sqlite")
 #################################################
 # Flask Setup
 #################################################
