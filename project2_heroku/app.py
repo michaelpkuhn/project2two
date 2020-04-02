@@ -17,10 +17,7 @@ import sys
 #################################################
 app = Flask(__name__)
 
-print("Before")
 engine = create_engine("sqlite:///project2_heroku/data/chiTransport2.sqlite")
-print(engine, flush=True)
-sys.stdout.flush()
 
 @app.route("/")
 def welcome():
@@ -39,7 +36,6 @@ def welcome():
 def scoot():
     def returnJson():
         url = "https://data.cityofchicago.org/resource/2kfw-zvte.json"
-        print(url)
         r = requests.get(url)
         data = r.json()
         return jsonify(data)
@@ -78,7 +74,6 @@ def scoot():
 def divvy():
     #Scoot JSON
     divvy_results = engine.execute("Select * from randomDivvy LIMIT 10000").fetchall()
-    print('DIVVY')
     inspector = inspect(engine)
     divvyColumns = inspector.get_columns('randomDivvy')
     colNames = [d['name'] for d in divvyColumns]
@@ -96,7 +91,7 @@ def divvy():
 
 @app.route("/map")
 def getMap():
-    return render_template('/maps.html')#, data=mars_data, hemi=mars_data['hemi'], news = mars_data['news'])
+    return render_template('maps.html')#, data=mars_data, hemi=mars_data['hemi'], news = mars_data['news'])
 
 
 
