@@ -11,7 +11,7 @@ var myMap = L.map("map", {
     accessToken: API_KEY
   }).addTo(myMap);
   
-  var newtry = ("../scooter.json");
+  var newtry = ("./data/scoot.json");
 
   console.log(newtry);
 
