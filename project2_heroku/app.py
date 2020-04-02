@@ -91,7 +91,7 @@ def divvy():
 
 @app.route("/map")
 def getMap():
-    return render_template('project2_heroku/Templates/maps.html')#, data=mars_data, hemi=mars_data['hemi'], news = mars_data['news'])
+    return render_template('maps.html')#, data=mars_data, hemi=mars_data['hemi'], news = mars_data['news'])
 
 
 
