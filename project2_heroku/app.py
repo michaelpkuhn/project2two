@@ -5,19 +5,22 @@ from sqlalchemy import create_engine, func
 from sqlalchemy import create_engine, inspect
 import requests
 from flask import Flask, jsonify, render_template, redirect
-
+import sys
+import sqlalchemy.dialects.postgresql
+from config import pw
 
 #################################################
 # Database Setup
 #################################################
 #engine = create_engine("sqlite:///../data/chiTransport2.sqlite")
 
-engine = create_engine("sqlite:///data/chiTransport2.sqlite")
-
 #################################################
 # Flask Setup
 #################################################
 app = Flask(__name__)
+
+#engine = create_engine("sqlite:///project2_heroku/data/chiTransport2.sqlite")
+engine = create_engine(F"postgres://postgres:{pw}@localhost/chiScoot")
 
 @app.route("/")
 def welcome():
@@ -36,7 +39,6 @@ def welcome():
 def scoot():
     def returnJson():
         url = "https://data.cityofchicago.org/resource/2kfw-zvte.json"
-        print(url)
         r = requests.get(url)
         data = r.json()
         return jsonify(data)
@@ -44,7 +46,8 @@ def scoot():
     try:
         #Scoot JSON
         #scootResults = engine.execute("Select * from randomScoot WHERE [Start Census Tract] != '' AND [End Community Area Number] != '' AND [Trip Distance] != '0' LIMIT 10000").fetchall()
-        scootResults = engine.execute("Select * from DNE")
+        #scootResults = engine.execute("Select * from DNE")
+        scootResults = engine.execute("Select * from scoot LIMIT 1001").fetchall()
         scootJson = []
         #Start and End Time rounded to the nearest hour
         for result in scootResults:
@@ -74,9 +77,11 @@ def scoot():
 @app.route("/api/divvy")
 def divvy():
     #Scoot JSON
-    divvy_results = engine.execute("Select * from randomDivvy LIMIT 10000").fetchall()
+    #divvy_results = engine.execute("Select * from randomDivvy LIMIT 10000").fetchall()
+    divvy_results = engine.execute("Select * from divvy LIMIT 1000").fetchall()
     inspector = inspect(engine)
-    divvyColumns = inspector.get_columns('randomDivvy')
+    #divvyColumns = inspector.get_columns('randomDivvy')
+    divvyColumns = inspector.get_columns('divvy')
     colNames = [d['name'] for d in divvyColumns]
     q2scope = ['2019-04','2019-05']
     divvyJson = []
@@ -92,7 +97,7 @@ def divvy():
 
 @app.route("/map")
 def getMap():
-    return render_template('/maps.html')#, data=mars_data, hemi=mars_data['hemi'], news = mars_data['news'])
+    return render_template('maps.html')#, data=mars_data, hemi=mars_data['hemi'], news = mars_data['news'])
 
 
 

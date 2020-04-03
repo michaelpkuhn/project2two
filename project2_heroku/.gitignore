@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+*.db
+divvy4.json
+Maps/data/
+.DS_Store
+data/
+config.py
