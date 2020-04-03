@@ -6,6 +6,8 @@ from sqlalchemy import create_engine, inspect
 import requests
 from flask import Flask, jsonify, render_template, redirect
 import sys
+import sqlalchemy.dialects.postgresql
+from config import pw
 
 #################################################
 # Database Setup
@@ -18,7 +20,7 @@ import sys
 app = Flask(__name__)
 
 #engine = create_engine("sqlite:///project2_heroku/data/chiTransport2.sqlite")
-engine = create_engine("postgress://postgress:kennwort@localhost/chiScoot")
+engine = create_engine(F"postgres://postgres:{pw}@localhost/chiScoot")
 
 @app.route("/")
 def welcome():
@@ -45,7 +47,7 @@ def scoot():
         #Scoot JSON
         #scootResults = engine.execute("Select * from randomScoot WHERE [Start Census Tract] != '' AND [End Community Area Number] != '' AND [Trip Distance] != '0' LIMIT 10000").fetchall()
         #scootResults = engine.execute("Select * from DNE")
-        scootResults = engine.execute("Select * from scoot").fetchall()
+        scootResults = engine.execute("Select * from scoot LIMIT 1001").fetchall()
         scootJson = []
         #Start and End Time rounded to the nearest hour
         for result in scootResults:
@@ -76,7 +78,7 @@ def scoot():
 def divvy():
     #Scoot JSON
     #divvy_results = engine.execute("Select * from randomDivvy LIMIT 10000").fetchall()
-    divvy_results = engine.execute("Select * from divvy").fetchall()
+    divvy_results = engine.execute("Select * from divvy LIMIT 1000").fetchall()
     inspector = inspect(engine)
     #divvyColumns = inspector.get_columns('randomDivvy')
     divvyColumns = inspector.get_columns('divvy')
