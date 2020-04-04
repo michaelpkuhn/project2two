@@ -10,8 +10,8 @@ var myMap = L.map("map", {
     accessToken: API_KEY
   }).addTo(myMap);
   
-  var url = ("static/js/data/scoot.json");
-  url = '/api/scoot'
+  //var url = ("static/js/data/scoot.json");
+  var url = '/api/scoot'
 
   d3.json(url, function(response) {
   

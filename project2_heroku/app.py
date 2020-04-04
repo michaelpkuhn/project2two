@@ -11,6 +11,7 @@ import sqlalchemy.dialects.postgresql
 #from config import pw
 from flask_sqlalchemy import SQLAlchemy
 import base64
+import chartdf
 
 #################################################
 # Database Setup
@@ -29,7 +30,6 @@ uri = 'postgres://pcflsmnymjbcye:bdbcd5493c7cf452038b086302d1638fe966f702d6cf8ac
 db_url = F"postgres://postgres:{pw}@localhost/chiScoot"
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', uri)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#app.config['SQLALCHEMY_DATABASE_URI']= "postgresql+psycopg2://kfgriimpfjecsv:Bk1*******G@ec2-23-21-215-184.compute-1.amazonaws.com:5432/dd71doth8gopgh?sslmode=require"
 
 # Connects to the database using the app config
 db = SQLAlchemy(app)
@@ -98,9 +98,12 @@ def dos_donts():
 
 @app.route("/map")
 def getMap():
-    d = make_response(scoot(),201)
     return render_template('maps.html')
-
+    
+@app.route("/map2")
+def getMap2():
+    return render_template('maps2.html')
+    
 @app.route("/sitemap")
 def sitemap():
     home = '/'
@@ -116,9 +119,6 @@ def sitemap():
         f"<a href={getMap}>{getMap}</a><br/>"
         f"<a href={dd}>{dd}</a>"
     )
-    
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
