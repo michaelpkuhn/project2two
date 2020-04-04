@@ -1,3 +1,4 @@
+import os
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -7,7 +8,7 @@ import requests
 from flask import Flask, jsonify, render_template, redirect
 import sys
 import sqlalchemy.dialects.postgresql
-from config import pw
+#from config import pw
 from flask_sqlalchemy import SQLAlchemy
 
 #################################################
@@ -20,7 +21,7 @@ from flask_sqlalchemy import SQLAlchemy
 #################################################
 app = Flask(__name__)
 
-
+pw = base64.b64decode(b'a2VubndvcnQ=').decode("utf-8")
 #environment variable to connect to the Heroku database.
 # DATABASE_URL will contain the database connection string:
 db_url = F"postgres://postgres:{pw}@localhost/chiScoot"
