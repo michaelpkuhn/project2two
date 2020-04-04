@@ -10,6 +10,7 @@ import sys
 import sqlalchemy.dialects.postgresql
 #from config import pw
 from flask_sqlalchemy import SQLAlchemy
+import base64
 
 #################################################
 # Database Setup
