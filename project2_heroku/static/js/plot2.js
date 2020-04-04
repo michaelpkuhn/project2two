@@ -1,15 +1,15 @@
 // Fetch the JSON data and console log it
 d3.json("static/js/data/avg_hr_rides.json").then((data) => {
-    console.log(data);
+    //console.log(data);
 
     function dayTrips(data) {
     return data.Day_End === "Weekday";
     }
     var wd = data.filter(dayTrips);
-    console.log(wd);
+    //console.log(wd);
 
     var we = data.filter(e => !dayTrips(e));
-    console.log(we);
+    //console.log(we);
 
 
     var trace1 = {

@@ -1,6 +1,6 @@
 d3.json("static/js/data/ride_count.json").then((data) => {
 
-    console.log(data);
+  //console.log(data);
 
   // var date = data.Date;
   // console.log(date);
@@ -12,7 +12,7 @@ d3.json("static/js/data/ride_count.json").then((data) => {
     }
 
     var nw = data.filter(nwside);
-    console.log(nw);
+    //console.log(nw);
 
     // Create variable for West Town
     function wtown(data){
@@ -20,7 +20,7 @@ d3.json("static/js/data/ride_count.json").then((data) => {
     }
 
     var wt= data.filter(wtown);
-    console.log(wt);
+    //console.log(wt);
 
     // Create variable for Logan Square
     function lSquare(data){
@@ -28,7 +28,7 @@ d3.json("static/js/data/ride_count.json").then((data) => {
     }
 
     var ls= data.filter(lSquare);
-    console.log(ls);
+    //console.log(ls);
 
     // // Create variable for Belmont Cragin
     // function bCragin(data){

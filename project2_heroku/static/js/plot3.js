@@ -1,6 +1,6 @@
 d3.json("static/js/data/comm_dist.json").then((data) => {
 
-  console.log(data);
+  //console.log(data);
 
   // Create variable for Distances greater than 5miles
   function greater(data){
@@ -8,7 +8,7 @@ d3.json("static/js/data/comm_dist.json").then((data) => {
   }
 
   var greaterThan = data.filter(greater);
-  console.log(greaterThan);
+  //console.log(greaterThan);
 
   // Create variable for Distances greater than 5miles
   function fourFive(data){
@@ -16,7 +16,7 @@ d3.json("static/js/data/comm_dist.json").then((data) => {
   }
 
   var between45 = data.filter(fourFive);
-  console.log(between45);
+  //console.log(between45);
 
   // Create variable for Distances greater than 5miles
   function threeFour(data){
@@ -24,7 +24,7 @@ d3.json("static/js/data/comm_dist.json").then((data) => {
   }
 
   var between34 = data.filter(threeFour);
-  console.log(between34);
+  //console.log(between34);
 
   // Create variable for Distances greater than 5miles
   function twoThree(data){
@@ -32,7 +32,7 @@ d3.json("static/js/data/comm_dist.json").then((data) => {
   }
 
   var between23 = data.filter(twoThree);
-  console.log(between23);
+  //console.log(between23);
 
   // Create variable for Distances greater than 5miles
   function oneTwo(data){
@@ -40,7 +40,7 @@ d3.json("static/js/data/comm_dist.json").then((data) => {
   }
 
   var between12 = data.filter(oneTwo);
-  console.log(between12);
+  //console.log(between12);
 
   // Create variable for Distances greater than 5miles
   function less(data){
@@ -48,7 +48,7 @@ d3.json("static/js/data/comm_dist.json").then((data) => {
   }
 
   var lessThan = data.filter(less);
-  console.log(lessThan);
+  //console.log(lessThan);
 
   // Create trace for >5 Miles
   var trace1 = {

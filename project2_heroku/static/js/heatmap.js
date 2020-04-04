@@ -11,10 +11,11 @@ var myMap = L.map("map", {
   }).addTo(myMap);
   
   var url = ("static/js/data/scoot.json");
-  
+  url = '/api/scoot'
+
   d3.json(url, function(response) {
   
-    console.log(response);
+    //console.log(response);
   
     var heatArray = [];
 
