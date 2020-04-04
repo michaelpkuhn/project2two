@@ -11,7 +11,6 @@ import sqlalchemy.dialects.postgresql
 #from config import pw
 from flask_sqlalchemy import SQLAlchemy
 import base64
-import chartdf
 
 #################################################
 # Database Setup
@@ -110,6 +109,7 @@ def sitemap():
     scoot = '/api/scoot'
     divvy = '/api/divvy'
     getMap = '/map'
+    getMap2 = '/map2'
     dd = '/dos_donts'
     return (
         f"Available Routes:<br/>"
@@ -117,6 +117,7 @@ def sitemap():
         f"<a href={scoot}>{scoot}</a><br/>"
         f"<a href={divvy}>{divvy}</a><br/>"
         f"<a href={getMap}>{getMap}</a><br/>"
+        f"<a href={getMap2}>{getMap2}</a><br/>"
         f"<a href={dd}>{dd}</a>"
     )
 
