@@ -1,10 +1,10 @@
-var newtry = ("short.json");
+var newtry = ("./data/short.json");
 var map;
 
 
 startLocation = L.layerGroup(d3.json(newtry, function(response) {
 
-    console.log(response);
+    // console.log(response);
   
     for (var i = 0; i < response.length; i++) {
       var startLat = response[i]["Start Lat"];
@@ -13,7 +13,7 @@ startLocation = L.layerGroup(d3.json(newtry, function(response) {
 
       var location = [startLat, startLong];  
 
-      console.log(location);
+      // console.log(location);
   
       if (location) {
         L.marker([location[0], location[1]]).addTo(map);
@@ -26,7 +26,7 @@ startLocation = L.layerGroup(d3.json(newtry, function(response) {
 
 endLocation = L.layerGroup(d3.json(newtry, function(response) {
   
-    console.log(response);
+    // console.log(response);
   
     for (var i = 0; i < response.length; i++) {
       var endLat = response[i]["End Lat"];
@@ -35,7 +35,7 @@ endLocation = L.layerGroup(d3.json(newtry, function(response) {
 
       var location2 = [endLat, endLong];  
 
-      console.log(location2);
+      // console.log(location2);
   
       if (location2) {
         L.marker([location2[0], location2[1]]).addTo(map);
