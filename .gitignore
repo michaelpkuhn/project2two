@@ -133,3 +133,5 @@ dmypy.json
 
 *.sqlite
 *.json
+
+.git/.MERGE_MSG.swp

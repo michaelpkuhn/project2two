@@ -1,4 +1,4 @@
-#from chicagoscooter.app import db
+from chiscoot.app import db
 
 # db.drop_all()
-#db.create_all()
+db.create_all()

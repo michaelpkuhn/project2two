@@ -14,16 +14,44 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(myMap);
 
 // Store our API endpoint inside queryUrl
-var queryUrl = " https://data.cityofchicago.org/resource/2kfw-zvte.geojson" 
+var queryUrl = " https://data.cityofchicago.org/resource/2kfw-zvte.geojson"
 
-var geojsonMarkerOptions = {
+function geojsonMarkerOptions (feature) {
+    return{
     radius: 6,
-    fillColor: "#ff7800",
+    fillColor: styleMarker(feature),
     color: "#000",
     weight: 1,
     opacity: 1,
     fillOpacity: 1
+    };
 };
+
+function styleMarker(feature) {
+    switch (true) {
+        case parseInt(feature.properties.trip_distance)<100:
+            // code block
+            return "#DAF7A6";
+        case parseInt(feature.properties.trip_distance)<2000:
+            // code block
+            return "#FFC300";
+        case parseInt(feature.properties.trip_distance)<4000:
+                // code block
+            return "#FF5733";
+        case parseInt(feature.properties.trip_distance)<6000:
+                // code block
+            return "#C70039";
+        case parseInt(feature.properties.trip_distance)<8000:
+                // code block
+        return "#900C3F ";
+        case parseInt(feature.properties.trip_distance)<10000:
+                // code block
+        return "#581845";
+        default:
+            return "#000000";
+        // code block
+    }
+}
 
 //Perform a GET request to the query URL
 d3.json(queryUrl, function (data) {
@@ -33,9 +61,10 @@ d3.json(queryUrl, function (data) {
     L.geoJSON(data, {
         pointToLayer: function (feature, latlng) {
             console.log(latlng);
-            return L.circleMarker(latlng, geojsonMarkerOptions)
-            .bindPopup(latlng.toString());
-        }
+            return L.circleMarker(latlng)
+                .bindPopup(latlng.toString());
+        },
+        style: geojsonMarkerOptions
     }).addTo(myMap);
     console.log(data);
     console.log(data["features"].length);
