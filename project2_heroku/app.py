@@ -64,7 +64,7 @@ def scoot():
             r['End Long'] = float(result[16])
             scootJson.append(r)
         return scootJson
-    scootResults = engine.execute("Select * from scoot WHERE start_lat is not null LIMIT 10000").fetchall()
+    scootResults = engine.execute("Select * from scoot LIMIT 100000").fetchall()
     scootJson = createScoot(scootResults)
     return jsonify(scootJson)
 
