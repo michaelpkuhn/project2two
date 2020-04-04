@@ -19,8 +19,6 @@ var myMap = L.map("map", {
   
     var heatArray = [];
 
-
-  
     for (var i = 0; i < response.length; i++) {
         var startLat = response[i]["Start Lat"];
         var startLong = response[i]["Start Long"];

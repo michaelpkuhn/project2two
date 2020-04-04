@@ -14,8 +14,7 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(myMap);
 
 // Store our API endpoint inside queryUrl
-//var queryUrl = " https://data.cityofchicago.org/resource/2kfw-zvte.geojson"
-var queryUrl = 'api/scoot'
+var queryUrl = " https://data.cityofchicago.org/resource/2kfw-zvte.geojson"
 
 function geojsonMarkerOptions (feature) {
     return{
@@ -67,8 +66,8 @@ d3.json(queryUrl, function (data) {
         },
         style: geojsonMarkerOptions
     }).addTo(myMap);
-    console.log(data);
-    console.log(data["features"].length);
+    //console.log(data);
+    //console.log(data["features"].length);
 });
 
 
