@@ -35,7 +35,10 @@ db = SQLAlchemy(app)
 
 
 #engine = create_engine("sqlite:///project2_heroku/data/chiTransport2.sqlite")
-engine = create_engine(db_url)
+try:
+    engine = create_engine(db_url)
+except:
+    engine = create_engine(db)
 
 
 @app.route("/api/scoot")
@@ -61,16 +64,9 @@ def scoot():
             r['End Long'] = float(result[16])
             scootJson.append(r)
         return scootJson
-        
-    try:
-        scootResults = engine.execute("Select * from scoot WHERE start_lat is not null LIMIT 10000").fetchall()
-        scootJson = createScoot(scootResults)
-        return jsonify(scootJson)
-    except:
-        engine = create_engine(db)
-        scootResults = engine.execute("Select * from scoot WHERE start_lat is not null LIMIT 10000").fetchall()
-        scootJson = createScoot(scootResults)
-        return jsonify(scootJson)
+    scootResults = engine.execute("Select * from scoot WHERE start_lat is not null LIMIT 10000").fetchall()
+    scootJson = createScoot(scootResults)
+    return jsonify(scootJson)
 
 @app.route("/api/divvy")
 def divvy():
