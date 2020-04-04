@@ -45,6 +45,12 @@ def welcome():
 def dos_donts():
     return render_template("Dos_Donts.html")
 
+@app.route("/map")
+def getMap():
+    return render_template('maps.html')#, data=mars_data, hemi=mars_data['hemi'], news = mars_data['news'])
+
+
+
 @app.route("/sitemap")
 def sitemap():
     scoot = '/api/scoot'
@@ -117,10 +123,6 @@ def divvy():
             divvyJson.append(r)
     
     return jsonify(divvyJson)
-
-@app.route("/map")
-def getMap():
-    return render_template('maps.html')#, data=mars_data, hemi=mars_data['hemi'], news = mars_data['news'])
 
 
 

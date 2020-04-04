@@ -1,5 +1,5 @@
 var myMap = L.map("map", {
-    center: [41.8781, -87.6298],
+    center: [41.8991, -87.7213],
     zoom: 13
   });
   
@@ -10,7 +10,7 @@ var myMap = L.map("map", {
     accessToken: API_KEY
   }).addTo(myMap);
   
-  var url = ("./data/scoot.json");
+  var url = ("static/js/data/scoot.json");
   
   d3.json(url, function(response) {
   
