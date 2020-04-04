@@ -39,6 +39,10 @@ engine = create_engine(db_url)
 
 @app.route("/")
 def welcome():
+    return render_template('index2.html')
+
+@app.route("/sitemap")
+def sitemap():
     scoot = '/api/scoot'
     divvy = '/api/divvy'
     getMap = '/map'
