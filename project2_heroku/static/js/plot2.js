@@ -1,5 +1,5 @@
 // Fetch the JSON data and console log it
-d3.json("data/avg_hr_rides.json").then((data) => {
+d3.json("static/js/data/avg_hr_rides.json").then((data) => {
     console.log(data);
 
     function dayTrips(data) {

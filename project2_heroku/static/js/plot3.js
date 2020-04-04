@@ -1,4 +1,4 @@
-d3.json("data/comm_dist.json").then((data) => {
+d3.json("static/js/data/comm_dist.json").then((data) => {
 
   console.log(data);
 

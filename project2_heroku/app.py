@@ -41,6 +41,10 @@ engine = create_engine(db_url)
 def welcome():
     return render_template('index2.html')
 
+@app.route("/dos_donts")
+def dos_donts():
+    return render_template("Dos_Donts.html")
+
 @app.route("/sitemap")
 def sitemap():
     scoot = '/api/scoot'

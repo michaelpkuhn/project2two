@@ -1,4 +1,4 @@
-d3.json("data/ride_count.json").then((data) => {
+d3.json("static/js/data/ride_count.json").then((data) => {
 
     console.log(data);
 
