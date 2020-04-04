@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>E-Scooter</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="templates/Index_Style.css">
+    
+</head>
+
+<body>
+    <nav>
+        <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Dos_Donts.html">Dos and Don'ts</a></li>
+            <li><a href="https://www.chicago.gov/content/dam/city/depts/cdot/Misc/EScooters/E-scooter_FAQ_revised_06-13-19.pdf">Frequently Asked Questions</a></li>
+            <li><a href="https://www.youtube.com/watch?v=VDusb9vNK1Q">Safety Videos</a></li>
+            <!-- <li><a href="Scooter-Divvy.html">E-Scooter vs. Divvy</a></li> -->
+        </ul>
+    </nav>
+    <br>
+    <img class= "logo" src="https://www.chicago.gov/content/dam/city/depts/cdot/Misc/EScooters/E-Scooter.PNG" alt="escooter_logo">
+    <!-- <br> -->
+    <h1 class="eval-title">2019 Evaluation</h1>
+    <br>
+    <p class="paragraph">"The City of Chicago conducted an e-scooter share pilot project from June 15, 2019 to October 15, 2019. The permits for 10 companies were issued by the Department of Business Affairs and Consumer Protection (BACP). The pilot tested the viability of scooters as a mobility option and was designed to maximize safety and minimize sidewalk clutter."</p>
+    
+    <!-- Total Daily Ride Summary -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-8">
+                <div id="rides"></div> 
+            </div>
+
+            <div class="col-sm-12 col-lg-4">
+                <div class = "daily">
+                    <h2 class="headers">Daily Rides</h2>
+                    <hr class="lines">
+                    <ul class= "ride_sum">
+                        <li>E-scooter companies reported providing 821,615 rides in the city with vaild data available for ~655,000 rides.</li>
+                        <li>Over 75% of rides began in the Near West Side, West Town & Logan Square Communities.</li>
+                        <li>Peak daily rides continuously decreased each month.</li>
+                        <li>Precipitation often drove at least a 50% decreased in daily rides.</li>
+                    </ul>
+                    <img class = "street_ride" src="https://blockclubchicago.org/wp-content/uploads/sites/5/2018/12/Screen-Shot-2018-12-17-at-10.39.44-AM.png?resize=2880,1620 2880w" alt="ride_img">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <!-- Hourly Rides Summary -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-5">
+                <div class = "daily">
+                    <h2 class="headers">Hourly Rides</h2>
+                    <hr class="lines">
+                    <ul class= "hour_sum">
+                        <li>Weekday commutes fluctuated throughout the day, showing a more rapid increase during morning, afternoon & evening rush hours</li>
+                        <li>Weekend rides remained on a constant growth from 5am to 5pm, with a continual decrease from then on.</li>
+                        <li>Average hourly rides were greatest between 5pm-6pm on both weekdays and weekends</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-7">
+                <div id="hour"></div> 
+            </div>            
+        </div>
+    </div>
+    <br>
+    <!-- Distance Summary -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-8">
+                <div id="stacked"></div> 
+            </div>
+
+            <div class="col-sm-12 col-lg-4">
+                <div class = "daily">
+                    <h2 class="headers">Distance</h2>
+                    <hr class="lines">
+                    <ul class="dist_sum">
+                        <li>Over 50% of trips were less than 1 mile in all communities</li>
+                        <li>Over 75% of rides began in the Near West Side, West Town & Logan Square Communities.</li>
+                        <li>Peak daily rides continuously decreased each month.</li>
+                        <li>Precipitation often drove at least a 50% decreased in daily rides.</li>
+                    </ul>
+                    <img class ="chi_scooter" src="http://assets.change.org/photos/4/nh/rr/WCNhRRupALNcjVH-800x450-noPad.jpg?1560799871" alt="chi_scooter">
+                </div>
+            </div>
+        </div>
+    </div> 
+    <br>
+
+    <footer>
+        <p class="copyright">
+            &copy; Copyright Coding Bootcamp 2020
+        </p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js"></script>
+    <!-- <script src = "data/comm_dist.json"></script>
+    <script src = "data/avg_hr_rides.json"></script>
+    <script src = "data/trip_count.json"></script> -->
+    <script src="plot3.js"></script>
+    <script src="plot2.js"></script>
+    <script src="plot.js"></script>
+
+</body>
+</html>
