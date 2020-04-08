@@ -8,27 +8,17 @@ import requests
 from flask import Flask, jsonify, render_template, redirect, make_response, json
 import sys
 import sqlalchemy.dialects.postgresql
-#from config import pw
 from flask_sqlalchemy import SQLAlchemy
 import base64
 
 #################################################
 # Database Setup
-#################################################
-#engine = create_engine("sqlite:///../data/chiTransport2.sqlite")
-
-#################################################
 # Flask Setup
 #################################################
 app = Flask(__name__)
 
-pw = base64.b64decode(b'a2VubndvcnQ=').decode("utf-8")
 #environment variable to connect to the Heroku database.
 # DATABASE_URL will contain the database connection string:
-#uri = 'postgres://pcflsmnymjbcye:bdbcd5493c7cf452038b086302d1638fe966f702d6cf8ac5ac5a0d67d4053a50@ec2-18-206-84-251.compute-1.amazonaws.com:5432/d6ktnq49kslfr0?sslmode=require'
-db_url = F"postgres://postgres:{pw}@localhost/chiScoot"
-
-print(os.environ.get('DATABASE_URL'))
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', db_url)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -36,15 +26,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Connects to the database using the app config
 db = SQLAlchemy(app)
 
-#engine = create_engine("sqlite:///project2_heroku/data/chiTransport2.sqlite")
-#try:
-#    engine = create_engine(db_url)
-#except:
-#engine = create_engine(db)
 engine = db.engine
-
-#print(engine)
-
 
 @app.route("/api/scoot")
 def scoot():
@@ -72,25 +54,6 @@ def scoot():
     scootResults = engine.execute("Select * from scoot LIMIT 100000").fetchall()
     scootJson = createScoot(scootResults)
     return jsonify(scootJson)
-
-@app.route("/api/divvy")
-def divvy():
-    divvy_results = engine.execute("Select * from divvy LIMIT 10000").fetchall()
-    inspector = inspect(engine)
-    divvyColumns = inspector.get_columns('divvy')
-    colNames = [d['name'] for d in divvyColumns]
-    q2scope = ['2019-04','2019-05']
-    divvyJson = []
-    for result in divvy_results:
-        if result[1][:7] not in q2scope:
-            r = {}
-            for i, c in enumerate(colNames):
-                if i != 3 and i != 6 and i < 8:
-                     r[c] = result[i]
-            divvyJson.append(r)
-    
-    return jsonify(divvyJson)
-
 
 @app.route("/")
 def welcome():
@@ -120,7 +83,6 @@ def sitemap():
         f"Available Routes:<br/>"
         f"<a href={home}>Home</a><br/>"
         f"<a href={scoot}>{scoot}</a><br/>"
-        f"<a href={divvy}>{divvy}</a><br/>"
         f"<a href={getMap}>{getMap}</a><br/>"
         f"<a href={getMap2}>{getMap2}</a><br/>"
         f"<a href={dd}>{dd}</a>"
