@@ -19,8 +19,8 @@ app = Flask(__name__)
 
 #environment variable to connect to the Heroku database.
 # DATABASE_URL will contain the database connection string:
-db_url = "postgres: local server"
-
+pw = base64.b64decode(b'a2VubndvcnQ=').decode("utf-8")
+db_url = F"postgres://postgres:{pw}@localhost/chiScoot"
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', db_url)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
