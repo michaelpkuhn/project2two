@@ -1,53 +1,37 @@
+import os
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 from sqlalchemy import create_engine, inspect
 import requests
-from flask import Flask, jsonify, render_template, redirect
+from flask import Flask, jsonify, render_template, redirect, make_response, json
 import sys
 import sqlalchemy.dialects.postgresql
-from config import pw
+from flask_sqlalchemy import SQLAlchemy
+import base64
 
 #################################################
 # Database Setup
-#################################################
-#engine = create_engine("sqlite:///../data/chiTransport2.sqlite")
-
-#################################################
 # Flask Setup
 #################################################
 app = Flask(__name__)
 
-#engine = create_engine("sqlite:///project2_heroku/data/chiTransport2.sqlite")
-engine = create_engine(F"postgres://postgres:{pw}@localhost/chiScoot")
+#environment variable to connect to the Heroku database.
+# DATABASE_URL will contain the database connection string:
+pw = base64.b64decode(b'a2VubndvcnQ=').decode("utf-8")
+db_url = F"postgres://postgres:{pw}@localhost/chiScoot"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', db_url)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-@app.route("/")
-def welcome():
-    scoot = '/api/scoot'
-    divvy = '/api/divvy'
-    getMap = '/map'
-    return (
-        f"Available Routes:<br/>"
-        f"<a href={scoot}>{scoot}</a><br/>"
-        f"<a href={divvy}>{divvy}</a><br/>"
-        f"<a href={getMap}>{getMap}</a>"
-    )
-    
+# Connects to the database using the app config
+db = SQLAlchemy(app)
+
+engine = db.engine
 
 @app.route("/api/scoot")
 def scoot():
-    def returnJson():
-        url = "https://data.cityofchicago.org/resource/2kfw-zvte.json"
-        r = requests.get(url)
-        data = r.json()
-        return jsonify(data)
-    
-    try:
-        #Scoot JSON
-        #scootResults = engine.execute("Select * from randomScoot WHERE [Start Census Tract] != '' AND [End Community Area Number] != '' AND [Trip Distance] != '0' LIMIT 10000").fetchall()
-        #scootResults = engine.execute("Select * from DNE")
-        scootResults = engine.execute("Select * from scoot LIMIT 1001").fetchall()
+    def createScoot(scootResults):
         scootJson = []
         #Start and End Time rounded to the nearest hour
         for result in scootResults:
@@ -67,39 +51,43 @@ def scoot():
             r['End Lat'] = float(result[15])
             r['End Long'] = float(result[16])
             scootJson.append(r)
-        return jsonify(scootJson)
-    except TypeError:
-        return returnJson()
-    except Exception as e:
-        print(e)
-        return returnJson()
+        return scootJson
+    scootResults = engine.execute("Select * from scoot LIMIT 100000").fetchall()
+    scootJson = createScoot(scootResults)
+    return jsonify(scootJson)
 
-@app.route("/api/divvy")
-def divvy():
-    #Scoot JSON
-    #divvy_results = engine.execute("Select * from randomDivvy LIMIT 10000").fetchall()
-    divvy_results = engine.execute("Select * from divvy LIMIT 1000").fetchall()
-    inspector = inspect(engine)
-    #divvyColumns = inspector.get_columns('randomDivvy')
-    divvyColumns = inspector.get_columns('divvy')
-    colNames = [d['name'] for d in divvyColumns]
-    q2scope = ['2019-04','2019-05']
-    divvyJson = []
-    for result in divvy_results:
-        if result[1][:7] not in q2scope:
-            r = {}
-            for i, c in enumerate(colNames):
-                if i != 3 and i != 6 and i < 8:
-                     r[c] = result[i]
-            divvyJson.append(r)
-    
-    return jsonify(divvyJson)
+@app.route("/")
+def welcome():
+    return render_template('index2.html')
+
+@app.route("/dos_donts")
+def dos_donts():
+    return render_template("Dos_Donts.html")
 
 @app.route("/map")
 def getMap():
-    return render_template('maps.html')#, data=mars_data, hemi=mars_data['hemi'], news = mars_data['news'])
-
-
+    return render_template('maps.html')
+    
+@app.route("/map2")
+def getMap2():
+    return render_template('maps2.html')
+    
+@app.route("/sitemap")
+def sitemap():
+    home = '/'
+    scoot = '/api/scoot'
+    divvy = '/api/divvy'
+    getMap = '/map'
+    getMap2 = '/map2'
+    dd = '/dos_donts'
+    return (
+        f"Available Routes:<br/>"
+        f"<a href={home}>Home</a><br/>"
+        f"<a href={scoot}>{scoot}</a><br/>"
+        f"<a href={getMap}>{getMap}</a><br/>"
+        f"<a href={getMap2}>{getMap2}</a><br/>"
+        f"<a href={dd}>{dd}</a>"
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)

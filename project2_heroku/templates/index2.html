@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>E-Scooter</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/css/Index_Style.css">
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:red">
+        <a class="navbar-brand" href="#">Chicago Scooter</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dos_donts">Dos and Don'ts</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.chicago.gov/content/dam/city/depts/cdot/Misc/EScooters/E-scooter_FAQ_revised_06-13-19.pdf">Frequently Asked Questions</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.youtube.com/watch?v=VDusb9vNK1Q">Safety Videos</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="map">Map</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="map2">Map 2</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="sitemap">Site Map</a></li>
+                <!-- <li><a href="Scooter-Divvy.html">E-Scooter vs. Divvy</a></li> -->
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <img class= "logo" src="static/css/images/E-Scooter.png" alt="escooter_logo">
+    <!-- <br> -->
+    <h1 class="eval-title">2019 Evaluation</h1>
+    <br>
+    <p class="paragraph">"The City of Chicago conducted an e-scooter share pilot project from June 15, 2019 to October 15, 2019. The permits for 10 companies were issued by the Department of Business Affairs and Consumer Protection (BACP). The pilot tested the viability of scooters as a mobility option and was designed to maximize safety and minimize sidewalk clutter."</p>
+    
+    <!-- Total Daily Ride Summary -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-8">
+                <div id="rides"></div> 
+            </div>
+
+            <div class="col-sm-12 col-lg-4">
+                <div class = "daily">
+                    <h2 class="headers">Daily Rides</h2>
+                    <hr class="lines">
+                    <ul class= "plot_sum">
+                        <li>E-scooter companies reported providing 821,615 rides in the city with vaild data available for ~655,000 rides.</li>
+                        <li>Over 75% of rides began in the Near West Side, West Town & Logan Square Communities.</li>
+                        <li>Peak daily rides continuously decreased each month.</li>
+                        <li>Precipitation often drove at least a 50% decreased in daily rides.</li>
+                    </ul>
+                    <img class = "street_ride" src="https://blockclubchicago.org/wp-content/uploads/sites/5/2018/12/Screen-Shot-2018-12-17-at-10.39.44-AM.png?resize=2880,1620 2880w" alt="ride_img">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <!-- Hourly Rides Summary -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-5">
+                <div class = "daily">
+                    <h2 class="headers">Hourly Rides</h2>
+                    <hr class="lines">
+                    <ul class= "plot_sum">
+                        <li>Weekday commutes fluctuated throughout the day, showing a more rapid increase during morning, afternoon & evening rush hours.</li>
+                        <li>Weekend rides remained on a constant growth from morning to afternoon, which plateaued between 2pm-6pm, and declined the rest of the day.</li>
+                        <li>Average hourly rides were greatest between 5pm-6pm on both weekdays and weekends.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-7">
+                <div id="hour"></div> 
+            </div>            
+        </div>
+    </div>
+    <br>
+    <!-- Distance Summary -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-8">
+                <div id="stacked"></div> 
+            </div>
+
+            <div class="col-sm-12 col-lg-4">
+                <div class = "daily">
+                    <h2 class="headers">Distance</h2>
+                    <hr class="lines">
+                    <ul class="plot_sum">
+                        <li>A vast majority of trips were no more than 2 miles long.</li>
+                        <li>Over 55% of rides were less than 1 mile.</li>
+                        <li>Less than 10% of riders traveled over 3 miles.</li>
+                    </ul>
+                    <img class ="chi_scooter" src="http://assets.change.org/photos/4/nh/rr/WCNhRRupALNcjVH-800x450-noPad.jpg?1560799871" alt="chi_scooter">
+                </div>
+            </div>
+        </div>
+    </div> 
+    <br>
+
+    <footer>
+        <p class="copyright">
+            &copy; Copyright Coding Bootcamp 2020
+        </p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js"></script>
+    <!-- <script src = "data/comm_dist.json"></script>
+    <script src = "data/avg_hr_rides.json"></script>
+    <script src = "data/trip_count.json"></script> -->
+    <script src="static/js/plot3.js"></script>
+    <script src="static/js/plot2.js"></script>
+    <script src="static/js/plot.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

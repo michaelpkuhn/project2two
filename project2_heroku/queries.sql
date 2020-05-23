@@ -48,3 +48,17 @@ DROP COLUMN bikeid
 SELECT *,
 substring(start_time,1,10)
 FROM divvy
+
+select * into randScoot from scoot order by random()
+
+select * into scoot from randScoot
+
+select * into filterScoot from scoot
+where start_time is not null AND
+end_time is not null AND
+start_tract is not null AND
+end_tract is not null AND
+start_lat is not null AND
+start_long is not null AND
+end_lat is not null AND
+end_long is not null
